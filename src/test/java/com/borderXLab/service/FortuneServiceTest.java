@@ -1,7 +1,7 @@
-package com.borderXLab.db;
+package com.borderXLab.service;
 
 import com.borderXLab.db.FortuneDB;
-import com.borderXLab.resources.FortuneResource;
+import com.borderXLab.service.impl.FortuneServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +13,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by zhou on 2017/12/23.
+ * Created by zhou on 2017/12/24.
  */
-public class FortuneDBTest {
+public class FortuneServiceTest {
+
+    private  FortuneService fortuneService;
 
     private FortuneDB fortuneDB = null;
 
@@ -24,7 +26,8 @@ public class FortuneDBTest {
     private static final List<Long> list = Collections.synchronizedList(new ArrayList<>());
 
     @Before
-    public void getFortuneDB(){
+    public void getFortuneService(){
+
         map.put(1L,"1111");
         map.put(2L,"2222");
         map.put(3L,"3333");
@@ -33,24 +36,7 @@ public class FortuneDBTest {
             list.add(key);
         }
         fortuneDB = new FortuneDB(map,list,list.size());
-    }
-
-    /**
-     * 添加
-     */
-    @Test
-    public void create(){
-        long id = fortuneDB.createFortune("4444");
-        Assert.assertEquals(4,id);
-    }
-
-    /**
-     * 删除
-     */
-    @Test
-    public void delete(){
-        boolean actual = fortuneDB.delete(2);
-        Assert.assertTrue(actual);
+        fortuneService =new FortuneServiceImpl(fortuneDB);
     }
 
     /**
@@ -58,17 +44,26 @@ public class FortuneDBTest {
      */
     @Test
     public void query(){
-        String s = fortuneDB.findFortune(1);
+        String s = fortuneService.find();
         Assert.assertNotNull(s);
     }
 
     /**
-     * 当超过查询的fortuneId时
+     * 删除
      */
     @Test
-    public void thanQuery(){
-        String s = fortuneDB.findFortune(10);
-        Assert.assertNull(s);
+    public void delete(){
+        boolean actual = fortuneService.delete(2);
+        Assert.assertTrue(actual);
+    }
+
+    /**
+     * 新增
+     */
+    @Test
+    public void create(){
+        long id = fortuneService.create("4444");
+        Assert.assertEquals(4,id);
     }
 
     /**
@@ -76,9 +71,9 @@ public class FortuneDBTest {
      */
     @Test
     public void deleteThenAdd(){
-        boolean actual = fortuneDB.delete(2);
+        boolean actual = fortuneService.delete(2);
         Assert.assertTrue(actual);
-        long id = fortuneDB.createFortune("4444");
+        long id = fortuneService.create("444");
         Assert.assertEquals(4,id);
     }
 
@@ -87,10 +82,11 @@ public class FortuneDBTest {
      */
     @Test
     public void deleteThenQuery(){
-        boolean actual = fortuneDB.delete(2);
+        boolean actual = fortuneService.delete(2);
+        System.out.println(fortuneDB.getFortuneMap().toString());
         Assert.assertTrue(actual);
-        String s = fortuneDB.findFortune(2);
-        Assert.assertNull(s);
+        String s = fortuneService.find();
+        Assert.assertNotNull(s);
     }
 
     /**
@@ -98,9 +94,9 @@ public class FortuneDBTest {
      */
     @Test
     public void addThenDelete(){
-        long id = fortuneDB.createFortune("4444");
+        long id = fortuneService.create("4444");
         Assert.assertEquals(4,id);
-        boolean actual = fortuneDB.delete(4);
+        boolean actual = fortuneService.delete(4);
 
         Assert.assertTrue(actual);
 
@@ -111,9 +107,9 @@ public class FortuneDBTest {
      */
     @Test
     public void addThenQuery(){
-        long id = fortuneDB.createFortune("4444");
+        long id = fortuneService.create("4444");
         Assert.assertEquals(4,id);
-        String s = fortuneDB.findFortune(3);
+        String s = fortuneService.find();
         Assert.assertNotNull(s);
 
     }
