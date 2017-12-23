@@ -6,7 +6,6 @@ import com.borderXLab.service.FortuneService;
 import com.borderXLab.service.impl.FortuneServiceImpl;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
-import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class FortuneApplication extends Application<Configuration> {
             list.add(key);
         }
     }
+
 
     public void run(Configuration configuration, Environment environment) {
         final FortuneService fortuneService = new FortuneServiceImpl(fortuneDB);
