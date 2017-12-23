@@ -1,0 +1,60 @@
+package com.borderXLab.db;
+
+
+import com.borderXLab.core.Fortune;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
+
+
+/**
+ * Created by zhou on 2017/12/23.
+ */
+public class FortuneDB {
+
+    private final Map<Long,String> fortuneMap;
+    private final List<Long> fortuneSize;
+    private final AtomicLong count ;
+
+    public FortuneDB(Map<Long,String> fortunes,List<Long> fortuneSize,long count){
+        this.fortuneMap = fortunes;
+        this.fortuneSize = fortuneSize;
+        this.count = new AtomicLong(count);
+    }
+
+    /**
+     * 添加
+     */
+    public Long createFortune(String message){
+        fortuneMap.put(count.incrementAndGet(), message);
+        fortuneSize.add(count.longValue());
+        return count.longValue();
+    }
+
+    /**
+     * 查询
+     */
+    public String findFortune(int index){
+        return fortuneMap.get(fortuneSize.get(index));
+    }
+
+    /**
+     * 删除
+     */
+    public boolean delete(long fortuneId){
+        fortuneMap.remove(fortuneId);
+        fortuneSize.remove(fortuneId);
+        return true;
+    }
+
+    /**
+     *
+     */
+    public List<Long> getFortuneSize() {
+        return fortuneSize;
+    }
+
+    public Map<Long, String> getFortuneMap() {
+        return fortuneMap;
+    }
+}
