@@ -23,7 +23,7 @@ public class FortuneDB {
     /**
      * 添加
      */
-    public synchronized Long createFortune(String message){
+    public synchronized long createFortune(String message){
         fortuneMap.put(count.incrementAndGet(), message);
         fortuneSize.add(count.longValue());
         return count.longValue();
@@ -33,6 +33,9 @@ public class FortuneDB {
      * 查询
      */
     public synchronized String findFortune(int index){
+        if (index >=fortuneSize.size()||fortuneSize.isEmpty()){
+            return null;
+        }
         return fortuneMap.get(fortuneSize.get(index));
     }
 

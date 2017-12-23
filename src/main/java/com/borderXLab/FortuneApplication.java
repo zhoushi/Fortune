@@ -5,8 +5,7 @@ import com.borderXLab.resources.FortuneResource;
 import com.borderXLab.service.FortuneService;
 import com.borderXLab.service.impl.FortuneServiceImpl;
 import io.dropwizard.Application;
-import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
-import io.dropwizard.configuration.SubstitutingSourceProvider;
+import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -19,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by zhou on 2017/12/23.
  */
-public class FortuneApplication extends Application<FortuneConfiguartion> {
+public class FortuneApplication extends Application<Configuration> {
 
     public static void main(String[] args) throws Exception{
         new FortuneApplication().run(args);
@@ -31,21 +30,16 @@ public class FortuneApplication extends Application<FortuneConfiguartion> {
      * 初始化数据
      */
     static {
-        map.put(1L,"周");
-        map.put(2L,"世");
-        map.put(3L,"贤");
+        map.put(1L,"11111");
+        map.put(2L,"22222");
+        map.put(3L,"33333");
 
         for (Long key:map.keySet()){
             list.add(key);
         }
     }
 
-    @Override
-    public void initialize(Bootstrap<FortuneConfiguartion> bootstrap) {
-        super.initialize(bootstrap);
-    }
-
-    public void run(FortuneConfiguartion configuration, Environment environment) {
+    public void run(Configuration configuration, Environment environment) {
         final FortuneService fortuneService = new FortuneServiceImpl(fortuneDB);
         environment.jersey().register(new FortuneResource(fortuneService));
     }

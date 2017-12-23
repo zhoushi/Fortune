@@ -4,7 +4,6 @@ import com.borderXLab.service.FortuneService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.*;
 
 /**
  * Created by zhou on 2017/12/23.
@@ -34,7 +33,6 @@ public class FortuneResource {
     @DELETE
     @Path("/fortunes/{fortuneId}")
     public boolean deleteFortunes(long fortuneId){
-
         return fortuneService.delete(fortuneId);
     }
 
