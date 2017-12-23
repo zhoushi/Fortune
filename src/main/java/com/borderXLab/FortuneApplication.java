@@ -5,7 +5,8 @@ import com.borderXLab.resources.FortuneResource;
 import com.borderXLab.service.FortuneService;
 import com.borderXLab.service.impl.FortuneServiceImpl;
 import io.dropwizard.Application;
-import io.dropwizard.Configuration;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -14,12 +15,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by zhou on 2017/12/23.
  */
-public class FortuneApplication extends Application<Configuration> {
+public class FortuneApplication extends Application<FortuneConfiguartion> {
 
     public static void main(String[] args) throws Exception{
         new FortuneApplication().run(args);
@@ -40,7 +40,12 @@ public class FortuneApplication extends Application<Configuration> {
         }
     }
 
-    public void run(Configuration configuration, Environment environment) {
+    @Override
+    public void initialize(Bootstrap<FortuneConfiguartion> bootstrap) {
+        super.initialize(bootstrap);
+    }
+
+    public void run(FortuneConfiguartion configuration, Environment environment) {
         final FortuneService fortuneService = new FortuneServiceImpl(fortuneDB);
         environment.jersey().register(new FortuneResource(fortuneService));
     }

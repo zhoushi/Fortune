@@ -1,8 +1,6 @@
 package com.borderXLab.db;
 
 
-import com.borderXLab.core.Fortune;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,7 +23,7 @@ public class FortuneDB {
     /**
      * 添加
      */
-    public Long createFortune(String message){
+    public synchronized Long createFortune(String message){
         fortuneMap.put(count.incrementAndGet(), message);
         fortuneSize.add(count.longValue());
         return count.longValue();
@@ -34,14 +32,14 @@ public class FortuneDB {
     /**
      * 查询
      */
-    public String findFortune(int index){
+    public synchronized String findFortune(int index){
         return fortuneMap.get(fortuneSize.get(index));
     }
 
     /**
      * 删除
      */
-    public boolean delete(long fortuneId){
+    public synchronized boolean delete(long fortuneId){
         fortuneMap.remove(fortuneId);
         fortuneSize.remove(fortuneId);
         return true;
