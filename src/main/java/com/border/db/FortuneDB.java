@@ -3,12 +3,16 @@ package com.border.db;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
  * Created by zhou on 2017/12/23.
  */
 public class FortuneDB {
+
+    private Lock lock = new ReentrantLock();
 
     private final Map<Long,String> fortuneMap;
     private final List<Long> fortuneSize;
@@ -23,9 +27,16 @@ public class FortuneDB {
     /**
      * 添加
      */
-    public synchronized long createFortune(String message){
-        fortuneMap.put(count.incrementAndGet(), message);
-        fortuneSize.add(count.longValue());
+    public  long createFortune(String message){
+        lock.lock();
+
+        try {
+            fortuneMap.put(count.incrementAndGet(), message);
+            fortuneSize.add(count.longValue());
+        }finally {
+            lock.unlock();
+        }
+
         return count.longValue();
     }
 
@@ -42,9 +53,15 @@ public class FortuneDB {
     /**
      * 删除
      */
-    public synchronized boolean delete(long fortuneId){
-        fortuneMap.remove(fortuneId);
-        fortuneSize.remove(fortuneId);
+    public  boolean delete(long fortuneId){
+        lock.lock();
+        try {
+            fortuneMap.remove(fortuneId);
+            fortuneSize.remove(fortuneId);
+        }finally {
+            lock.unlock();
+        }
+
         return true;
     }
 

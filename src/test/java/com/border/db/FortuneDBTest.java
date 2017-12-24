@@ -4,11 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by zhou on 2017/12/23.
@@ -115,4 +114,6 @@ public class FortuneDBTest {
         Assert.assertNotNull(s);
 
     }
+
+
 }
