@@ -115,6 +115,9 @@ public class FortuneServiceTest {
 
     }
 
+    /**
+     * 并发测试
+     */
     @Test
     public void testConcurrency(){
         Random random = new Random();

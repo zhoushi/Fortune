@@ -19,14 +19,15 @@ Key，幸运消息是Value,可以根据Key实现对消息的增删查，由于�
 ~~~
 测试方案：
     1：分别对db，service单独测试
-    1：单独测试，分别对三个接口进行单独的边界测试和异常数据测试
-    2：复合测试，分别模拟操作流程，测试案例是新添加后删除，先删除后添加，
+    2：单独测试，分别对三个接口进行单独的边界测试和异常数据测试
+    3：复合测试，分别模拟操作流程，测试案例是新添加后删除，先删除后添加，
  在删除的同时进行查询操作，在新增的同时进行删除操作
+    4：并发测试启动一百个线程对业务进行测试
 
 
 ~~~
 
-* /fortune
+* http://localhost:8082/fortune
 
 ~~~
 
@@ -38,7 +39,7 @@ response:
 }
 ~~~
 
-* /fortunes
+* http://localhost:8082/fortunes
 
 ~~~
 request:
@@ -54,7 +55,7 @@ response:
 }
 ~~~
 
-* /fortunes/{fortuneId}
+* http://localhost:8082/fortunes/{fortuneId}
 ~~~
 request:
 
