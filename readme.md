@@ -69,4 +69,17 @@ response:
     isDelete:true //true 已经删除 false没有删除
 }
 
+
 ~~~
+
+# Running The Application
+
+* package
+~~~
+mvn package
+~~~~
+
+* To run the server run
+~~~
+java -jar target/Fortune1.0.0.jar server fortune.yml
+~~~~
