@@ -4,6 +4,7 @@ import com.border.service.FortuneService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 
 /**
  * Created by zhou on 2017/12/23.

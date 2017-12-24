@@ -48,9 +48,7 @@ public class FortuneDB {
         return true;
     }
 
-    /**
-     *
-     */
+
     public List<Long> getFortuneSize() {
         return fortuneSize;
     }

@@ -1,7 +1,7 @@
-package com.borderXLab.service.impl;
+package com.border.service.impl;
 
-import com.borderXLab.db.FortuneDB;
-import com.borderXLab.service.FortuneService;
+import com.border.db.FortuneDB;
+import com.border.service.FortuneService;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.borderXLab.service;
+package com.border.service;
 
 /**
  * Created by zhou on 2017/12/23.
