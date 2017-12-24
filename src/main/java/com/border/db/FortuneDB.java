@@ -32,7 +32,7 @@ public class FortuneDB {
     /**
      * 查询
      */
-    public synchronized String findFortune(int index){
+    public String findFortune(int index){
         if (index >=fortuneSize.size()||fortuneSize.isEmpty()){
             return null;
         }
