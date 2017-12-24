@@ -1,7 +1,5 @@
-package com.borderXLab.db;
+package com.border.db;
 
-import com.borderXLab.db.FortuneDB;
-import com.borderXLab.resources.FortuneResource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

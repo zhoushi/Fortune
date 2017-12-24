@@ -1,6 +1,6 @@
-package com.borderXLab.resources;
+package com.border.resources;
 
-import com.borderXLab.service.FortuneService;
+import com.border.service.FortuneService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by zhou on 2017/12/23.
  */
+@Path("")
 @Produces(MediaType.APPLICATION_JSON)
 public class FortuneResource {
 
@@ -32,7 +33,7 @@ public class FortuneResource {
 
     @DELETE
     @Path("/fortunes/{fortuneId}")
-    public boolean deleteFortunes(long fortuneId){
+    public boolean deleteFortunes(@PathParam("fortuneId") long fortuneId){
         return fortuneService.delete(fortuneId);
     }
 

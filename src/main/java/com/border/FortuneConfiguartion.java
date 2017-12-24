@@ -1,4 +1,4 @@
-package com.borderXLab;
+package com.border;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;

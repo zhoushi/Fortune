@@ -1,9 +1,9 @@
-package com.borderXLab;
+package com.border;
 
-import com.borderXLab.db.FortuneDB;
-import com.borderXLab.resources.FortuneResource;
-import com.borderXLab.service.FortuneService;
-import com.borderXLab.service.impl.FortuneServiceImpl;
+import com.border.db.FortuneDB;
+import com.border.resources.FortuneResource;
+import com.border.service.FortuneService;
+import com.border.service.impl.FortuneServiceImpl;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;

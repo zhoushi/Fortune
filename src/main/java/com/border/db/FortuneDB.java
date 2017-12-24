@@ -1,4 +1,4 @@
-package com.borderXLab.db;
+package com.border.db;
 
 
 import java.util.*;

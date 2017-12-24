@@ -1,4 +1,4 @@
-package com.borderXLab.resource;
+package com.border.resource;
 
 /**
  * Created by zhou on 2017/12/24.

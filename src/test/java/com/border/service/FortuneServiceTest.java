@@ -1,7 +1,7 @@
-package com.borderXLab.service;
+package com.border.service;
 
-import com.borderXLab.db.FortuneDB;
-import com.borderXLab.service.impl.FortuneServiceImpl;
+import com.border.db.FortuneDB;
+import com.border.service.impl.FortuneServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
