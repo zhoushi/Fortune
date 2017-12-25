@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class FortuneDB {
 
-    private Lock lock = new ReentrantLock();
+    private Lock lock ;
 
     private final Map<Long,String> fortuneMap;
     private final List<Long> fortuneSize;
@@ -22,6 +22,7 @@ public class FortuneDB {
         this.fortuneMap = fortunes;
         this.fortuneSize = fortuneSize;
         this.count = new AtomicLong(count);
+        lock = new ReentrantLock();
     }
 
     /**
@@ -54,15 +55,16 @@ public class FortuneDB {
      * 删除
      */
     public  boolean delete(long fortuneId){
+        boolean isDelete = false;
         lock.lock();
         try {
             fortuneMap.remove(fortuneId);
-            fortuneSize.remove(fortuneId);
+            isDelete = fortuneSize.remove(fortuneId);
         }finally {
             lock.unlock();
         }
 
-        return true;
+        return isDelete;
     }
 
 
