@@ -33,7 +33,7 @@ public class FortuneServiceImpl implements FortuneService {
 
     @Override
     public boolean delete(long fortuneId) {
-        if(fortuneId < 0 || fortuneId > fortuneDB.getFortuneSize().size()){
+        if(fortuneId < 0 ){
             return false;
         }
         return fortuneDB.delete(fortuneId);
